@@ -3,6 +3,9 @@
 *.pyc
 *.vvp
 *.kate-swp
+*.css
+*.html
+*.js
 
 ctrl_received_file.txt
 data_received_file.txt
