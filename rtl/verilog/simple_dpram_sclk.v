@@ -30,7 +30,10 @@ module simple_dpram_sclk
     input  wire [DATA_WIDTH-1:0] din
 );
 
+`ifdef SRAM_BEHAV_MODEL
 reg [DATA_WIDTH-1:0]     mem[(1<<ADDR_WIDTH)-1:0];
+`elsif SYNTHESIS
+`endif
 reg [DATA_WIDTH-1:0]     rdata;
 
 generate
