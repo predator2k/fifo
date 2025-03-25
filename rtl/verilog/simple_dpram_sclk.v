@@ -11,6 +11,11 @@
  Copyright (C) 2012 Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>
 
  ******************************************************************************/
+`resetall
+`timescale 1ns / 1ps
+`default_nettype none
+
+
 
 module simple_dpram_sclk
 #(
@@ -30,13 +35,14 @@ module simple_dpram_sclk
     input  wire [DATA_WIDTH-1:0] din
 );
 
-`ifdef SRAM_BEHAV_MODEL
-    `ifdef SYNTHESIS
-    $error("");
-    `endif
+//TODO
+// `ifdef SRAM_BEHAV_MODEL
+//     `ifdef SYNTHESIS
+//     $error("");
+//     `endif
 reg [DATA_WIDTH-1:0]     mem[(1<<ADDR_WIDTH)-1:0];
-`else
-`endif
+// `else
+// `endif
 reg [DATA_WIDTH-1:0]     rdata;
 
 generate
@@ -69,3 +75,5 @@ always @(posedge clk) begin
 end
 
 endmodule
+
+`resetall

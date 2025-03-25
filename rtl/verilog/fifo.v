@@ -25,16 +25,14 @@ module fifo
 localparam DW = (DATA_WIDTH  < 1) ? 1 : DATA_WIDTH;
 localparam AW = (DEPTH_WIDTH < 1) ? 1 : DEPTH_WIDTH;
 
-initial begin
+generate
     if(DEPTH_WIDTH < 1)  begin
-        $error("%m : DEPTH_WIDTH must be > 0");
-        $finish;
+        $error("DEPTH_WIDTH must be > 0");
     end
     if(DATA_WIDTH < 1) begin
-        $error("%m : DATA_WIDTH must be > 0");
-        $finish;
+        $error("DATA_WIDTH must be > 0");
     end
-end
+endgenerate
 
 reg [AW:0] write_pointer;
 reg [AW:0] read_pointer;
@@ -59,8 +57,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-simple_dpram_sclk
-#(
+simple_dpram_sclk #(
     .ADDR_WIDTH(AW),
     .DATA_WIDTH(DW),
     .ENABLE_BYPASS(1)
@@ -75,3 +72,5 @@ simple_dpram_sclk
 );
 
 endmodule
+
+`resetall
